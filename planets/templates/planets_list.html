@@ -1,0 +1,132 @@
+{% extends 'base_planets.html' %}
+{% load static %}
+{% block planets_list %}
+<head>
+    <!--<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>-->
+    <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+</head>
+
+<div align="right">
+    <em>
+        "The Earth is what we all have in common"<br>
+        - Wendell Berry
+    </em>
+</div>
+<div class="table_name">
+    <h3>Brief main characteristics of planets of the solar system</h3>
+</div>
+<h5 align="center">Click on name to see description</h5>
+
+<!--Planets-->
+<table data-padding-left="50%">
+    <tr>
+        <th>#</th>
+        <th>View</th>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Mass<br> relative to<br> an Earth</th>
+        <th>Mean radius<br> relative to<br> an Earth</th>
+        <th>Rotation period</th>
+        <th>Orbital period</th>
+        <th>Average orbital<br> speed, km/s</th>
+        <th>Escape velocity, km/s</th>
+        <th>Surface gravity, g</th>
+        <th>Semi major axis, AU</th>
+        <th>Quantity<br> of moons</th>
+        <th>Discovery<br> date</th>
+    </tr>
+    {% for planet in planets %}
+        <tr>
+            <td>{{ planet.number }}</td>
+
+            {% if planet.image %}
+                <td><img src="{{ planet.image.url }}" alt="{{ planet.name }}" width="70"/></td>
+            {% else %}
+                <td></td>
+            {% endif %}
+
+            {% if planet.symbol %}
+                <td><img src="{{ planet.symbol.url }}" alt="symbol" width="20"></td>
+            {% else %}
+                <td></td>
+            {% endif %}
+
+            <td><a href="{% url 'planets:planet_data' planet.name %}">{{ planet }}</a></td>
+            <td>{{ planet.planet_mass_to_earth }}</td>
+            <td>{{ planet.mean_radius_to_earth }}</td>
+            <td>{{ planet.rotation_period|safe }}</td>
+            <td>{{ planet.orbital_period }}</td>
+            <td>{{ planet.orbital_speed }}</td>
+            <td>{{ planet.escape_velocity }}</td>
+            <td>{{ planet.surface_gravity }}</td>
+            <td>{{ planet.semi_major_axis }}</td>
+            <td>{{ planet.moons_quantity }}</td>
+
+            {% if planet.discovery_date %}
+                <td>{{ planet.discovery_date}}</td>
+            {% else %}
+                <td>?</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+<!--Chart of orbital speed-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{% static 'chart_speed.js' %}" async></script>
+<div id="chart_div" style="width: 1000px; height: 400px; margin: auto;"></div>
+<br>
+
+<!--Moons -->
+<div class="table_name">
+    <h3>Brief main characteristics of moons of planets</h3>
+</div>
+<h5 align="center">Click on name to see description</h5>
+
+<table width="65%">
+    <tr>
+        <th>Mother planet</th>
+        <th>Number</th>
+        <th>View</th>
+        <th>Name</th>
+        <th>Orbital period</th>
+        <th>Escape velocity, km/s</th>
+        <th>Surface gravity, g</th>
+        <th>Discovery<br> date</th>
+    </tr>
+    {% for moon in moons %}
+        <tr>
+            <td>{{ moon.planet }}</td>
+            <td>{{ moon.number_m }}</td>
+
+            {% if moon.image %}
+                <td><img src="{{ moon.image.url }}" alt="{{ moon.name }}" width="70"> </td>
+            {% else %}
+                <td></td>
+            {% endif %}
+
+            <td><a href="{% url 'planets:moon_data' moon.name %}">{{ moon.name }}</a></td>
+            <td>{{ moon.orbital_period }}</td>
+            <td>{{ moon.escape_velocity }}</td>
+            <td>{{ moon.surface_gravity }}</td>
+            <td>{{ moon.discovery_date }}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+<br>
+<!--Chart of radius planet-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{% static 'chart_radius.js' %}" async></script>
+<div id="series_chart_div" style="width: 1000px; height: 400px; margin: auto;"></div>
+
+<hr>
+
+<footer>
+    This site is in a state of development<br>
+    All information was taken from Wikipedia<br>
+    It is now: {{ now }}
+</footer>
+{% endblock planets_list%}

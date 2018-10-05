@@ -1,0 +1,18 @@
+{% extends 'base_planets.html' %}
+
+{% block title %} {{ moon }} {% endblock title %}
+
+{% block moon_data %}
+    <h1> {{ moon.name }} </h1>
+    <hr>
+    {% if moon.image %}
+        {% load staticfiles %}
+        <img src="{{ moon.image.url }}" alt="{{ moon.name }}" width="400" title="{{ moon.name }}"/>
+    {% endif %}
+    <h5>{{ moon.description|safe }}</h5>
+    <hr>
+    <div class="reference" align="right">
+        <a href="{{ moon.wiki }}">look to Wikipedia >>></a>
+    </div>
+
+{% endblock moon_data %}

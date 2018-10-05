@@ -1,0 +1,27 @@
+<h4>There is running file 'polls/detail.html'</h4>
+
+{% comment %}
+<!--<h2>{{ question }}</h2>-->
+
+<h1>{{ question.question_text }}</h1>
+<h3>Was published: {{ question.pub_date }}</h3>
+<h3>'question.choice_set.all<span style="color:red;">(?)</span>': {{ question.choice_set.all }}</h3>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+{% endcomment %}
+
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>

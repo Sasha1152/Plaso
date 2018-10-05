@@ -1,0 +1,82 @@
+h1 {
+    color: SandyBrown;
+    }
+
+h3 {
+    color: SandyBrown;
+    }
+
+a {
+    color: Orange;
+    line-height: 1;
+    }
+
+body {
+    background: url("planets_background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left top;
+    background-size: cover;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-family: 'Harmattan', sans-serif;
+    color: OrangeRed;
+    font-size: 30px;
+    line-height: 1;
+}
+
+p {
+    text-indent: 40px;
+   }
+
+.table_name {
+    margin-bottom: -50px;
+    padding: 2px;
+    line-height: 1;
+    text-align: center;
+}
+
+footer {
+    color: #b3b3b3;
+    margin-bottom: 10;
+    padding: 5px 5px 5px 5px;
+    line-height: 1;
+    font-size: 0.75em;
+    line-height: 0.8em;
+}
+
+.reference a {
+    color: gold;
+    font-size: 0.75em;
+}
+
+img {
+    float: left;
+    margin: 0px 20px 20px 0px;
+}
+
+table img {
+    float: center;
+    margin: 0px;
+}
+
+table, td, th {
+    margin: auto;
+    border: 2px solid green;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+    font-size: 0.8em;
+    line-height: 0.8em;
+}
+
+table {
+    pading: 20px;
+    }
+
+th {
+    background-color: #003366;
+    color: #cccc00;
+}
+
+tr:hover { background-color: #000080; }

@@ -1,0 +1,18 @@
+{% extends 'base_planets.html' %}
+
+{% block title %} {{ planet }} {% endblock title %}
+
+{% block planet_data %}
+    <h1>#{{ number }} {{ planet }} </h1>
+    <hr>
+    {% if planet.image %}
+        {% load staticfiles %}
+        <img src="{{ planet.image.url }}" alt="{{ planet.name }}" width="400" title="{{ planet.name }}"/>
+    {% endif %}
+    <h5>{{ planet.description|safe }}</h5>
+    <hr>
+    <div class="reference" align="right">
+        <a href="{{ planet.wiki }}">look to Wikipedia >>></a>
+    </div>
+
+{% endblock planet_data %}
